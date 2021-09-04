@@ -1,0 +1,60 @@
+{
+    "name": "kodzila/architecture-validator",
+    "type": "library",
+    "description": "Library for validating PHP projects architecture.",
+    "authors": [
+        {
+            "name": "Pawel Kozik",
+            "email": "pawel.artur.kozik@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4 | ^8.0",
+        "symfony/finder": "4.* || 5.*"
+    },
+    "require-dev": {
+        "kodzila/sniffer": "^1.0",
+        "phpunit/phpunit": "9.*",
+        "vimeo/psalm": "4.*"
+    },
+    "config": {
+        "platform": {
+            "php": "7.4"
+        },
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Kodzila\\ArchValidator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Kodzila\\ArchValidator\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "lint": [
+            "vendor/bin/phpcs",
+            "vendor/bin/psalm --show-info=false"
+        ],
+        "test:unit": [
+            "vendor/bin/phpunit tests/"
+        ],
+        "mr": [
+            "composer validate",
+            "composer install",
+            "@lint",
+            "@test:unit"
+        ]
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://d8.composer.hetzner.lfac.dk/"
+        }
+    ]
+}
